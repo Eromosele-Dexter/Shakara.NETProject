@@ -9,6 +9,5 @@ public class OrderController : Controller
     {
         return View();
     }
-// My name is Dexter
-// Hello
+
 }
