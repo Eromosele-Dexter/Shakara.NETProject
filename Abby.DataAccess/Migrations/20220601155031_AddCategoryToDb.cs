@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace AbbyWeb.Migrations
+namespace Abby.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AddCategoryToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,9 +1,9 @@
-using AbbyWeb.Data;
-using AbbyWeb.Models;
+using Abby.DataAccess.Data;
+using Abby.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AbbyWeb.Pages.Categories;
+namespace AbbyWeb.Pages.Admin.FoodTypes;
 [BindProperties]
 public class Create : PageModel
 {
@@ -13,7 +13,7 @@ public class Create : PageModel
     {
         _db = db;
     }
-    public Category Category { get; set; }
+    public FoodType FoodType { get; set; }
     
     public void OnGet()
     {
@@ -22,19 +22,14 @@ public class Create : PageModel
 
     public async Task<IActionResult> OnPost()
     {
-        //Custom Server Validation
-        if (Category.Name == Category.DisplayOrder.ToString())
-        {
-            ModelState.AddModelError(Category.Name, "The Display Order and Name cannot match");
-        }
-        
+      
         // Custom Server-side validation
         if (!ModelState.IsValid) 
             return Page();
         
-        await _db.Category.AddAsync(Category);
+        await _db.FoodType.AddAsync(FoodType);
         await _db.SaveChangesAsync();
-        TempData["success"] = "Category created successfully!";
+        TempData["success"] = "FoodType created successfully!";
         return RedirectToPage("Index");
     }
 }

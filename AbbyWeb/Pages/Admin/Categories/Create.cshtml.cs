@@ -1,26 +1,25 @@
-using AbbyWeb.Data;
-using AbbyWeb.Models;
+using Abby.DataAccess.Data;
+using Abby.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AbbyWeb.Pages.Categories;
-
+namespace AbbyWeb.Pages.Admin.Categories;
 [BindProperties]
-public class Edit : PageModel
+public class Create : PageModel
 {
     private readonly ApplicationDbContext _db;
 
-    public Edit(ApplicationDbContext db)
+    public Create(ApplicationDbContext db)
     {
         _db = db;
     }
     public Category Category { get; set; }
     
-    public void OnGet(int id)
+    public void OnGet()
     {
-        Category = _db.Category.Find(id);
+        
     }
-    
+
     public async Task<IActionResult> OnPost()
     {
         //Custom Server Validation
@@ -29,13 +28,13 @@ public class Edit : PageModel
             ModelState.AddModelError(Category.Name, "The Display Order and Name cannot match");
         }
         
-        // Custom Server-side validation
+        // Server-side validation
         if (!ModelState.IsValid) 
             return Page();
         
-        _db.Category.Update(Category);
+        await _db.Category.AddAsync(Category);
         await _db.SaveChangesAsync();
-        TempData["success"] = "Category updated successfully!";
+        TempData["success"] = "Category created successfully!";
         return RedirectToPage("Index");
     }
 }

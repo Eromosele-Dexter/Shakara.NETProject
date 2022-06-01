@@ -1,9 +1,10 @@
-using AbbyWeb.Data;
-using AbbyWeb.Models;
+
+using Abby.DataAccess.Data;
+using Abby.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AbbyWeb.Pages.Categories;
+namespace AbbyWeb.Pages.Admin.FoodTypes;
 
 [BindProperties]
 public class Delete : PageModel
@@ -14,22 +15,22 @@ public class Delete : PageModel
     {
         _db = db;
     }
-    public Category Category { get; set; }
+    public FoodType FoodType { get; set; }
     
     public void OnGet(int id)
     {
-        Category = _db.Category.Find(id);
+        FoodType = _db.FoodType.Find(id);
     }
     
     public async Task<IActionResult> OnPost()
     {
-        var categoryFromDb = _db.Category.Find(Category.Id);
+        var foodTypeFromDb = _db.FoodType.Find(FoodType.Id);
 
-        if (categoryFromDb != null)
+        if (foodTypeFromDb != null)
         {
-            _db.Category.Remove(categoryFromDb);
+            _db.FoodType.Remove(foodTypeFromDb);
             await _db.SaveChangesAsync();
-            TempData["success"] = "Category deleted successfully!";
+            TempData["success"] = "FoodType deleted successfully!";
             return RedirectToPage("Index");
         }
 

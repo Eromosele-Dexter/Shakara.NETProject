@@ -20,6 +20,22 @@
 
     <ItemGroup>
       <Folder Include="Pages\CategoryTemp" />
+      <Folder Include="Pages\Customer" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Abby.DataAccess\Abby.DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Admin\Categories\Create.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Categories\Delete.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Categories\Edit.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Categories\Index.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\FoodTypes\Create.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\FoodTypes\Delete.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\FoodTypes\Edit.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\FoodTypes\Index.cshtml" />
     </ItemGroup>
 
 </Project>

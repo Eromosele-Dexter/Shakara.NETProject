@@ -1,15 +1,15 @@
-using AbbyWeb.Data;
-using AbbyWeb.Models;
+using Abby.DataAccess.Data;
+using Abby.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AbbyWeb.Pages.Categories;
+namespace AbbyWeb.Pages.Admin.Categories;
 
-public class IndexModel : PageModel
+public class Index : PageModel
 {
     private readonly ApplicationDbContext _db;
     public IEnumerable<Category> Categories { get; set; }
 
-    public IndexModel(ApplicationDbContext db)
+    public Index(ApplicationDbContext db)
     {
         _db = db;
     }

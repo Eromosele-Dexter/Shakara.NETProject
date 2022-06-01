@@ -1,5 +1,5 @@
 @page
-@model AbbyWeb.Pages.Categories.Create
+@model AbbyWeb.Pages.Admin.Categories.Create
 
 <form method="post">
 	<div class="border p-3 mt-4">
@@ -24,9 +24,7 @@
 	
 </form>
 
-@section Scripts{
-	@{
-		<partial name="_ValidationScriptsPartial"/>
-	}
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
