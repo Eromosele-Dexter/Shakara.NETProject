@@ -23,8 +23,13 @@ public class Upsert : PageModel
         MenuItem = new MenuItem();
     }
     
-    public void OnGet()
+    public void OnGet(int? id)
     {
+        if (id != null)
+        {
+            //Edit
+            MenuItem = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == id);
+        }
         CategoryList = _unitOfWork.Category.GetAll().Select(i=> new SelectListItem()
         {
             Text = i.Name,
@@ -61,6 +66,33 @@ public class Upsert : PageModel
         else
         {
             //edit
+            var ObjFromDb = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == MenuItem.Id);
+            if (files.Count > 0)
+            {
+                string fileName_new = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(webRootPath, @"images\menuItems");
+                var extension = Path.GetExtension(files[0].FileName);
+                
+                //delete the old image
+                var oldImagePath = Path.Combine(webRootPath, ObjFromDb.Image.TrimStart('\\'));
+
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+                // new image upload
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                MenuItem.Image = @"\images\menuItems\" + fileName_new + extension;
+            }
+            else
+            {
+                MenuItem.Image = ObjFromDb.Image;
+            }
+            _unitOfWork.MenuItem.Update(MenuItem);
+            _unitOfWork.Save();
         }
 
         return RedirectToPage("./Index");
