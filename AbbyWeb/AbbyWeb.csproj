@@ -21,6 +21,7 @@
     <ItemGroup>
       <Folder Include="Pages\CategoryTemp" />
       <Folder Include="Pages\Customer" />
+      <Folder Include="wwwroot\images\menuItems" />
     </ItemGroup>
 
     <ItemGroup>

@@ -52,14 +52,14 @@ public class Upsert : PageModel
         {
             //create
             string fileName_new = Guid.NewGuid().ToString();
-            var uploads = Path.Combine(webRootPath, @"images\menuItems");
+            var uploads = Path.Combine(webRootPath, @"images/menuItems");
             var extension = Path.GetExtension(files[0].FileName);
 
             using (var fileStream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
             {
                 files[0].CopyTo(fileStream);
             }
-            MenuItem.Image = @"\images\menuItems\" + fileName_new + extension;
+            MenuItem.Image = @"/images/menuItems/" + fileName_new + extension; 
             _unitOfWork.MenuItem.Add(MenuItem);
             _unitOfWork.Save();
         }
@@ -74,7 +74,7 @@ public class Upsert : PageModel
                 var extension = Path.GetExtension(files[0].FileName);
                 
                 //delete the old image
-                var oldImagePath = Path.Combine(webRootPath, ObjFromDb.Image.TrimStart('\\'));
+                var oldImagePath = Path.Combine(webRootPath, ObjFromDb.Image.TrimStart('/'));
 
                 if (System.IO.File.Exists(oldImagePath))
                 {
@@ -85,7 +85,7 @@ public class Upsert : PageModel
                 {
                     files[0].CopyTo(fileStream);
                 }
-                MenuItem.Image = @"\images\menuItems\" + fileName_new + extension;
+                MenuItem.Image = @"/images/menuItems/" + fileName_new + extension;
             }
             else
             {

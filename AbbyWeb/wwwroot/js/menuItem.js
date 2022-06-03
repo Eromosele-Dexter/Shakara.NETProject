@@ -18,8 +18,8 @@ $(document).ready( function () {
                     <a href="/Admin/MenuItems/Upsert?id=${data}" class="btn btn-success text-white mx-2"
                     ><i class="bi bi-pencil-square"></i>    
                     </a> 
-                     <a href="/Admin/MenuItems/Upsert?id=${data}" class="btn btn-danger text-white"
-                    ><i class="bi bi-trash-fill"></i>    
+                      <a onClick=Delete('/api/MenuItem/'+${data})  class="btn btn-danger text-white mx-2">
+                    <i class="bi bi-trash-fill"></i>    
                     </a>
                 </div>`
                 },
