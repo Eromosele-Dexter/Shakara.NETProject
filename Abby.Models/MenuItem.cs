@@ -18,12 +18,15 @@ public class MenuItem
     [Range(1,100,ErrorMessage = "Price should be between $1 and $1000")]
     public double Price { get; set; }
     
+    [Display(Name = "Food Type")]
     public int FoodTypeId { get; set; }
     
     [ForeignKey("FoodTypeId")]
     public FoodType FoodType { get; set; }
     
+    [Display(Name = "Category Type")]
     public int CategoryId { get; set; }
+    
     public Category Category { get; set; }
     
 }

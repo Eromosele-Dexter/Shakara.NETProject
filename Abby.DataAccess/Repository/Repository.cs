@@ -30,9 +30,17 @@ public class Repository<T>:IRepository<T> where T: class
         dbSet.RemoveRange(entity);
     }
 
-    public IEnumerable<T> GetAll()
+    public IEnumerable<T> GetAll(string? includeProperties=null)
     {
         IQueryable<T> query = dbSet;
+        if (includeProperties != null)
+        { // abc,,xyz -> abc xyz
+            foreach (var includeProperty in includeProperties.Split(
+                         new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+        }
         return query.ToList();
     }
 
