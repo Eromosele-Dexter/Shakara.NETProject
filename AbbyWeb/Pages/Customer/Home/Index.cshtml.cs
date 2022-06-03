@@ -20,6 +20,6 @@ public class Index : PageModel
     public void OnGet()
     {
         MenuItemList = _unitOfWork.MenuItem.GetAll(includeProperties: "Category,FoodType");
-        CategoryList = _unitOfWork.Category.GetAll();
+        CategoryList = _unitOfWork.Category.GetAll(orderby: u=>u.OrderBy(c=>c.DisplayOrder));
     }
 }
