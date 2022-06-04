@@ -23,7 +23,7 @@ public class Details : PageModel
     
     public void OnGet(int id)
     {
-        // Claim user id of logged in user
+        // Get user id of logged in user
         var claimsIdentity = (ClaimsIdentity)User.Identity;
         var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
       

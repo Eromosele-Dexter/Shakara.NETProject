@@ -30,14 +30,18 @@
                             <a class="dropdown-item" asp-area="" asp-page="/Admin/Categories/Index">Categories</a>
                             <a class="dropdown-item" asp-area="" asp-page="/Admin/FoodTypes/Index">Food Types</a>
                             <a class="dropdown-item" asp-area="" asp-page="/Admin/MenuItems/Index">Menu Items</a>
-                                              
+
                             <div class="dropdown-divider"></div>
-                                              
+
                         </div>
                     </li>
-                  
+                    <li>
+                        <a class="nav-link text-white-50" asp-area="" asp-page="/Customer/Cart/Index">
+                            <i class="bi bi-cart"></i>
+                        </a>
+                    </li>
                 </ul>
-                  <partial name="_LoginPartial"></partial>
+                <partial name="_LoginPartial"></partial>
             </div>
         </div>
     </nav>
@@ -51,7 +55,7 @@
 
 <footer class="footer text-muted bg-primary">
     <div class="container">
-        &copy; 2022 - AbbyWeb 
+        &copy; 2022 - AbbyWeb
     </div>
 </footer>
 
