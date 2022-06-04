@@ -12,10 +12,22 @@ public class ShoppingCartRepository:Repository<ShoppingCart>, IShoppingCartRepos
         _db = db;
     }
     
-    public void Save()
+    public int IncrementCount(ShoppingCart shoppingCart, int count)
     {
+        shoppingCart.Count += count;
         _db.SaveChanges();
+        return shoppingCart.Count;
+    }
+
+    public int DecrementCount(ShoppingCart shoppingCart, int count)
+    {
+        shoppingCart.Count -= count;
+        _db.SaveChanges();
+        return shoppingCart.Count;
     }
     
+   
+
+
    
 }

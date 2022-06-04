@@ -1,6 +1,6 @@
 namespace Abby.Utility;
 
-public class SD // Static Details
+public static class SD // Static Details
 {
     public const string ManagerRole = "Manager";
     public const string FrontDeskRole = "Front";
