@@ -87,7 +87,7 @@ public class Summary : PageModel
        // _unitOfWork.ShoppingCart.RemoveRange(ShoppingCartList);
         _unitOfWork.Save();
 
-        var domain = "http://localhost:7060/";
+        var domain = "https://localhost:7060/";
         var options = new SessionCreateOptions
         {
             LineItems = new List<SessionLineItemOptions>() 
@@ -98,7 +98,7 @@ public class Summary : PageModel
             },
             Mode = "payment",
             SuccessUrl = domain + $"Customer/Cart/OrderConfirmation?id={OrderHeader.Id}",
-            CancelUrl = domain + "Customer/Cart/index",
+            CancelUrl = domain + "Customer/Cart/Index",
         };
         
         // add line items
