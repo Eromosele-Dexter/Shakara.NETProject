@@ -1,4 +1,6 @@
 @page
+@using Abby.Utility
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model AbbyWeb.Pages.Admin.Order.OrderDetails
 
 <form method="post">
@@ -11,7 +13,7 @@
                 <a asp-page="/Admin/Order/OrderList" class="btn btn-outline-primary form-control">Back to Orders </a>
             </div>
         </div>
-        <hr />
+        <hr/>
         <div class="row pt-2">
             <div class="col-lg-8 col-12" style="border-right:1px solid #bbb9b9">
                 <div class="form-group row py-1">
@@ -19,15 +21,15 @@
                         Name
                     </div>
                     <div class="col-md-9 col-12">
-                        <input asp-for="OrderDetailVM.OrderHeader.PickupName" disabled class="form-control" />
+                        <input asp-for="OrderDetailVM.OrderHeader.PickupName" disabled class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group row py-1">
                     <div class="col-md-3 col-12 text-primary">
-                       Email
+                        Email
                     </div>
                     <div class="col-md-9 col-12">
-                        <input asp-for="OrderDetailVM.OrderHeader.ApplicationUser.Email" disabled class="form-control" />
+                        <input asp-for="OrderDetailVM.OrderHeader.ApplicationUser.Email" disabled class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group row py-1">
@@ -35,15 +37,15 @@
                         Phone Number
                     </div>
                     <div class="col-md-9 col-12">
-                        <input asp-for="OrderDetailVM.OrderHeader.PhoneNumber" disabled class="form-control" />
+                        <input asp-for="OrderDetailVM.OrderHeader.PhoneNumber" disabled class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group row py-1">
                     <div class="col-md-3 col-12 text-primary">
-                       Order Total
+                        Order Total
                     </div>
                     <div class="col-md-9 col-12">
-                        <input asp-for="OrderDetailVM.OrderHeader.OrderTotal" disabled class="form-control" />
+                        <input asp-for="OrderDetailVM.OrderHeader.OrderTotal" disabled class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group row py-1">
@@ -51,7 +53,7 @@
                         Order Date Time
                     </div>
                     <div class="col-md-9 col-12">
-                        <input value="@Model.OrderDetailVM.OrderHeader.PickUpTime.ToShortDateString() @Model.OrderDetailVM.OrderHeader.PickUpTime.ToShortTimeString()" disabled class="form-control" />
+                        <input value="@Model.OrderDetailVM.OrderHeader.PickUpTime.ToShortDateString() @Model.OrderDetailVM.OrderHeader.PickUpTime.ToShortTimeString()" disabled class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group row py-1">
@@ -66,36 +68,62 @@
             </div>
 
             <div class="col-lg-4 col-12">
-                <h4 class="d-flex justify-content-between align-content-center mb-3">
+                <button type="submit" disabled class="btn btn-outline-info form-control">@Model.OrderDetailVM.OrderHeader.Status</button>
+
+                <h4 class="d-flex justify-content-between align-content-center mb-3 pt-3">
                     <span class="text-muted">Order ID: </span>
                     <span class="badge badge-secondary badge-pill">@Model.OrderDetailVM.OrderHeader.Id</span>
                 </h4>
                 <ul class="list-group mb-3">
-                     @foreach(var detail in Model.OrderDetailVM.OrderDetails){ 
+                    @foreach (var detail in Model.OrderDetailVM.OrderDetails)
+                    {
                         <li class="list-group-item d-flex justify-content-between">
                             <div>
                                 <h6 class="my-0">@detail.Name</h6>
                                 <small class="text-muted">Quantity : @detail.Count</small>
                             </div>
-                            <span class="text-muted">$@(detail.Price*detail.Count)</span>
+                            <span class="text-muted">$@(detail.Price * detail.Count)</span>
                         </li>
-                         
-                         }
+                    }
                     <li class="list-group-item d-flex justify-content-between bg-light">
                         <span class="text-info"> Total (USD)</span>
                         <strong class="text-info">$@Model.OrderDetailVM.OrderHeader.OrderTotal</strong>
                     </li>
 
                 </ul>
-                    <button type="submit" disabled class="btn btn-info form-control">ORDER STATUS</button>
-                    <div class="row pt-3">
+
+                <div class="row pt-3">
+                    @if (Model.OrderDetailVM.OrderHeader.Status == SD.StatusReady
+                         && (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole)))
+                    {
+                        <div class="col-12 pb-2">
+                            <button type="submit" class="btn btn-primary form-control"
+                                    asp-page-handler="OrderCompleted" asp-route-orderId="@Model.OrderDetailVM.OrderHeader.Id">
+                                Complete Order
+                            </button>
+                        </div>
+                    }
+                    @if ((User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole))
+                         && (Model.OrderDetailVM.OrderHeader.Status == SD.StatusReady ||
+                             Model.OrderDetailVM.OrderHeader.Status == SD.StatusSubmitted ||
+                             Model.OrderDetailVM.OrderHeader.Status == SD.StatusInProcess)
+                        )
+                    {
                         <div class="col-6">
-                            <button type="submit" class="btn btn-warning form-control"><i class="bi bi-x-square"></i> Cancel Order</button>
+                            <button type="submit" class="btn btn-warning form-control"
+                                    asp-page-handler="OrderCancel" asp-route-orderId="@Model.OrderDetailVM.OrderHeader.Id">
+                                <i class="bi bi-x-square"></i> Cancel Order
+                            </button>
                         </div>
                         <div class="col-6">
-                            <button type="submit" class="btn btn-danger form-control"><i class="bi bi-currency-dollar"></i> Refund Order</button>
+                            <button type="submit" class="btn btn-danger form-control"
+                                    asp-page-handler="OrderRefund" asp-route-orderId="@Model.OrderDetailVM.OrderHeader.Id">
+                                <i class="bi bi-currency-dollar"></i> Refund Order
+                            </button>
                         </div>
-                    </div>
+                    }
+
+                </div>
             </div>
         </div>
     </div>
