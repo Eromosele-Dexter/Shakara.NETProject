@@ -73,6 +73,7 @@ app.Run();
 
 // Azure Database server admin login username is admin-sql
 // the password is CloudTouch123
+// "DefaultConnection": "Server=tcp:abbywebserver.database.windows.net,1433;Initial Catalog=AbbyDb;Persist Security Info=False;User ID=admin-sql;Password=CloudTouch123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
 void SeedDatabase()
 {

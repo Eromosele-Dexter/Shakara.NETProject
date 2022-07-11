@@ -5,29 +5,7 @@ html {
 }
 
 
-/*// INITIAL QUERY: 375px*/
-/*                     :root {*/
-/*                       --primary-colour: #333;*/
-/*                     }*/
 
-/** {*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  box-sizing: border-box;*/
-/*  transition: all .2s linear;*/
-/*  text-transform: capitalize;*/
-/*  font-family: 'Exo', sans-serif;*/
-/*}*/
-
-/*html {*/
-/*  font-size: 62.5%;*/
-/*  scroll-behavior: smooth;*/
-/*}*/
-
-/*body {*/
-/*  overflow-x: hidden;*/
-/*  color: white;*/
-/*}*/
 
 @media (min-width: 768px) {
   html {

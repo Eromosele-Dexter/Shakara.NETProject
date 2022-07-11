@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+// INITIAL QUERY: 375px
+
+:root {
+  --primary-colour: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  //transition: all .2s linear;
+  text-transform: capitalize;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
+
+body {
+ overflow-x: hidden;
+  color: black;
+}
+
+                  // Customer/Home
+// index
+.home-menu{
+  h2{
+    color: green;
+  }
+}
+
+// details
+
+                  // Customer/Cart
+// index
+
+// orderConfirmation
+
+// summary
+
+                  // Admin/Categories
+// create
+
+// delete
+
+// edit
+
+// index
+
+                  // Admin/FoodTypes
+// create
+
+// delete
+
+// edit
+
+// index
+
+                  // Admin/MenuItems
+// index
+
+// upsert
+
+                  // Admin/Order
+// manageOrder
+
+// orderDetails
+
+// orderList
+
+                  // Shared/LoginPartial
+
