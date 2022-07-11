@@ -133,13 +133,7 @@ namespace AbbyWeb.Areas.Identity.Pages.Account
                 user.PhoneNumber = Input.PhoneNumber;
                 
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                if (!await _roleManager.RoleExistsAsync(SD.KitchenRole))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole(SD.KitchenRole));
-                    await _roleManager.CreateAsync(new IdentityRole(SD.CustomerRole));
-                    await _roleManager.CreateAsync(new IdentityRole(SD.ManagerRole));
-                    await _roleManager.CreateAsync(new IdentityRole(SD.FrontDeskRole));
-                }
+             
                 if (result.Succeeded)
                 {
                     string role = Request.Form["rdUserRole"].ToString();

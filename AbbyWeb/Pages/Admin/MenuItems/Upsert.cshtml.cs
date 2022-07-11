@@ -70,7 +70,7 @@ public class Upsert : PageModel
             if (files.Count > 0)
             {
                 string fileName_new = Guid.NewGuid().ToString();
-                var uploads = Path.Combine(webRootPath, @"images\menuItems");
+                var uploads = Path.Combine(webRootPath, @"images/menuItems");
                 var extension = Path.GetExtension(files[0].FileName);
                 
                 //delete the old image

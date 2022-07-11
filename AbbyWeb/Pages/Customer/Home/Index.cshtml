@@ -1,10 +1,10 @@
 @page
 @using Abby.Models
 @model AbbyWeb.Pages.Customer.Home.Index
-<div class="row container pb-3 backgroundWhite">
+<div class="row container pb-3 backgroundWhite menu">
 	@foreach (var category in Model.CategoryList)
 	{
-		<h2 class="text-success pl-1"><b>@category.Name</b></h2>
+		<h2 class="text-success pl-1 menu-category-name"><b>@category.Name</b></h2>
 		<div class="col-12">
 			<div class="row my-3">
 				@foreach (var menuItem in Model.MenuItemList.Where(u => u.CategoryId == category.Id))

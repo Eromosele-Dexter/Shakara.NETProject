@@ -1,6 +1,33 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,700;1,400&family=Poppins:wght@400;700&display=swap');*/
+
 html {
   font-size: 14px;
 }
+
+
+/*// INITIAL QUERY: 375px*/
+/*                     :root {*/
+/*                       --primary-colour: #333;*/
+/*                     }*/
+
+/** {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  box-sizing: border-box;*/
+/*  transition: all .2s linear;*/
+/*  text-transform: capitalize;*/
+/*  font-family: 'Exo', sans-serif;*/
+/*}*/
+
+/*html {*/
+/*  font-size: 62.5%;*/
+/*  scroll-behavior: smooth;*/
+/*}*/
+
+/*body {*/
+/*  overflow-x: hidden;*/
+/*  color: white;*/
+/*}*/
 
 @media (min-width: 768px) {
   html {
@@ -15,4 +42,14 @@ html {
 
 body {
   margin-bottom: 60px;
+  min-height: 100vh;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2.5em;
+  text-align: center;
 }

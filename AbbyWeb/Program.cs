@@ -1,5 +1,6 @@
 
 using Abby.DataAccess.Data;
+using Abby.DataAccess.DbInitializer;
 using Abby.DataAccess.Repository;
 using Abby.DataAccess.Repository.IRepository;
 using Abby.Utility;
@@ -19,6 +20,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -51,10 +53,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+SeedDatabase();
 
 string key = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 StripeConfiguration.ApiKey = key;
@@ -66,3 +70,15 @@ app.UseSession();
 app.MapRazorPages();
 app.MapControllers();
 app.Run();
+
+// Azure Database server admin login username is admin-sql
+// the password is CloudTouch123
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}

@@ -21,17 +21,17 @@ else
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating my-2">
                 <input asp-for="Input.FirstName" class="form-control" aria-required="true"/>
-                <label asp-for="Input.FirstName"></label>
+                <label asp-for="Input.FirstName">First Name</label>
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
             <div class="form-floating my-2">
                 <input asp-for="Input.LastName" class="form-control" aria-required="true"/>
-                <label asp-for="Input.LastName"></label>
+                <label asp-for="Input.LastName">Last Name</label>
                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
             </div>
             <div class="form-floating my-2">
                 <input asp-for="Input.PhoneNumber" class="form-control" aria-required="true"/>
-                <label asp-for="Input.PhoneNumber"></label>
+                <label asp-for="Input.PhoneNumber">Phone Nsumber</label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-floating my-2">
@@ -51,10 +51,20 @@ else
             </div>
             @if (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole))
             {
-                <div class="form-floating my-2">
-                    <input type="radio" name="rdUserRole" value="@SD.ManagerRole"/>@SD.ManagerRole
-                    <input type="radio" name="rdUserRole" value="@SD.KitchenRole"/>@SD.KitchenRole
-                    <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole"/>@SD.FrontDeskRole
+                <div class="form-floating my-3 d-flex flex-row">
+                    <div class="">
+                        <input id="@SD.ManagerRole" type="radio" name="rdUserRole" value="@SD.ManagerRole"/>
+                        <label for="@SD.ManagerRole">@SD.ManagerRole</label>
+                    </div>
+                    <div class="mx-2">
+                        <input id="@SD.KitchenRole" type="radio" name="rdUserRole" value="@SD.KitchenRole"/>
+                        <label for="@SD.KitchenRole">@SD.KitchenRole</label>
+                    </div>
+                    <div class="mx-2">
+                        <input id="@SD.FrontDeskRole" type="radio" name="rdUserRole" value="@SD.FrontDeskRole"/>
+                        <label for="@SD.FrontDeskRole">@SD.FrontDeskRole</label>
+                    </div>
+                    
                 </div>
             }
             <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">Register</button>
@@ -95,7 +105,6 @@ else
                 }
             </section>
         </div>
-        
     }
 </div>
 
