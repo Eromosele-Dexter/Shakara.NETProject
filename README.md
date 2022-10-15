@@ -15,3 +15,8 @@ Authentication from .NET 6 scafolding.
 External API's: Facebook login Token for Dev's, Tiny MCE editor, Ajax Datatables.
 
 Website link: https://shakara3.azurewebsites.net/Customer/Home
+
+For Admin login: email is admin@AbbyWeb.com and password is Admin123* 
+
+ENJOY !
+
